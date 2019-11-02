@@ -1,0 +1,26 @@
+# libraries.........
+
+import matplotlib.pyplot as plt
+import time
+import psutil as cpu
+%matplotlib notebook
+plt.rcParams["animation.html"] = "jshtml"
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+
+
+i = 0
+x , y  = [],[]
+
+while True:
+    x.append(i)
+    y.append(cpu.cpu_percent())
+    
+    ax.plot(x,y,color="red")
+    
+    fig.canvas.draw()
+    ax.set_xlim(left = max(0,i-50), right=i+50)
+    time.sleep(0.1)
+    i += 1
+fig.show()
